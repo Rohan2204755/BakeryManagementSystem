@@ -91,7 +91,7 @@ public class loginpanel extends javax.swing.JFrame {
         jPanel2.add(jLabel1);
         jLabel1.setBounds(90, 10, 280, 25);
 
-        jPanel3.setBackground(new java.awt.Color(204, 102, 0));
+        jPanel3.setBackground(new java.awt.Color(102, 51, 0));
         jPanel3.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
