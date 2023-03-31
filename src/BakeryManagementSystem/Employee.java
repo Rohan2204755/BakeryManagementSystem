@@ -340,6 +340,7 @@ public class Employee extends javax.swing.JFrame {
    String empSalary = employee.getValueAt(rowIndex, 8).toString();
 
    // Prompt the user to edit the information
+   //empty textfield validation
    String newEmpName = JOptionPane.showInputDialog(null, "Enter the new name for employee " + empID, empName);
    if(newEmpName == null) {
        // The user clicked the cancel button, do nothing
