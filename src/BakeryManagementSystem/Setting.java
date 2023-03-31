@@ -38,6 +38,9 @@ public class Setting extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -133,6 +136,18 @@ public class Setting extends javax.swing.JFrame {
         jPanel1.add(jLabel4);
         jLabel4.setBounds(250, 50, 150, 41);
 
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Box.png"))); // NOI18N
+        jPanel1.add(jLabel2);
+        jLabel2.setBounds(240, 90, 227, 140);
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Box.png"))); // NOI18N
+        jPanel1.add(jLabel3);
+        jLabel3.setBounds(470, 90, 227, 140);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Box.png"))); // NOI18N
+        jPanel1.add(jLabel1);
+        jLabel1.setBounds(700, 90, 227, 140);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -213,12 +228,15 @@ public class Setting extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
