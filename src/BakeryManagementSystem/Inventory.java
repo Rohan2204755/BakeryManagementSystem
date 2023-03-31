@@ -28,8 +28,8 @@ public class Inventory extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        dashboard = new javax.swing.JLabel();
+        eemployee = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
@@ -57,29 +57,29 @@ public class Inventory extends javax.swing.JFrame {
         jPanel1.add(jLabel7);
         jLabel7.setBounds(10, 20, 200, 140);
 
-        jLabel10.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Dashboard.png"))); // NOI18N
-        jLabel10.setText("  Dashboard");
-        jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
+        dashboard.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        dashboard.setForeground(new java.awt.Color(255, 255, 255));
+        dashboard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Dashboard.png"))); // NOI18N
+        dashboard.setText("  Dashboard");
+        dashboard.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel10MouseClicked(evt);
+                dashboardMouseClicked(evt);
             }
         });
-        jPanel1.add(jLabel10);
-        jLabel10.setBounds(40, 200, 150, 21);
+        jPanel1.add(dashboard);
+        dashboard.setBounds(40, 200, 150, 21);
 
-        jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/employe.png"))); // NOI18N
-        jLabel6.setText("   Employee");
-        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+        eemployee.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        eemployee.setForeground(new java.awt.Color(255, 255, 255));
+        eemployee.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/employe.png"))); // NOI18N
+        eemployee.setText("   Employee");
+        eemployee.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel6MouseClicked(evt);
+                eemployeeMouseClicked(evt);
             }
         });
-        jPanel1.add(jLabel6);
-        jLabel6.setBounds(40, 250, 150, 22);
+        jPanel1.add(eemployee);
+        eemployee.setBounds(40, 250, 150, 22);
 
         jLabel11.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
@@ -208,12 +208,12 @@ public class Inventory extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
+    private void eemployeeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eemployeeMouseClicked
         // TODO add your handling code here:
         Employee m = new Employee();
         this.hide();
         m.setVisible(true);
-    }//GEN-LAST:event_jLabel6MouseClicked
+    }//GEN-LAST:event_eemployeeMouseClicked
 
     private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
         // TODO add your handling code here:
@@ -229,12 +229,12 @@ public class Inventory extends javax.swing.JFrame {
         m.setVisible(true);
     }//GEN-LAST:event_jLabel9MouseClicked
 
-    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
+    private void dashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboardMouseClicked
         // TODO add your handling code here:
         Dashboard m = new Dashboard();
         this.hide();
         m.setVisible(true);
-    }//GEN-LAST:event_jLabel10MouseClicked
+    }//GEN-LAST:event_dashboardMouseClicked
 
     private void AddemployeeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddemployeeMouseClicked
         String id = null;
@@ -290,10 +290,11 @@ public class Inventory extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Addemployee;
+    private javax.swing.JLabel dashboard;
     private javax.swing.JLabel deleteemployee;
     private javax.swing.JLabel editemployee;
+    private javax.swing.JLabel eemployee;
     private javax.swing.JTable employee;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -303,7 +304,6 @@ public class Inventory extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
