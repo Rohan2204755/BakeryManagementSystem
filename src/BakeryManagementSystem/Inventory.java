@@ -210,26 +210,38 @@ public class Inventory extends javax.swing.JFrame {
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
         // TODO add your handling code here:
-      
+        Employee m = new Employee();
+        this.hide();
+        m.setVisible(true);
     }//GEN-LAST:event_jLabel6MouseClicked
 
     private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
         // TODO add your handling code here:
-       
+        Inventory m = new Inventory();
+        this.hide();
+        m.setVisible(true);
     }//GEN-LAST:event_jLabel11MouseClicked
 
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
         // TODO add your handling code here:
-        
+        Loginpanel m = new Loginpanel();
+        this.hide();
+        m.setVisible(true);
     }//GEN-LAST:event_jLabel9MouseClicked
 
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
         // TODO add your handling code here:
-      
+        Dashboard m = new Dashboard();
+        this.hide();
+        m.setVisible(true);
     }//GEN-LAST:event_jLabel10MouseClicked
 
     private void AddemployeeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddemployeeMouseClicked
-        
+        String id = null;
+        // TODO add your handling code here:
+        Addemployee m = new Addemployee(id);
+
+        m.setVisible(true);
     }//GEN-LAST:event_AddemployeeMouseClicked
 
     private void deleteemployeeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteemployeeMouseClicked

@@ -4,8 +4,12 @@
  */
 package BakeryManagementSystem;
 
+import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -19,7 +23,7 @@ public class Loginpanel extends javax.swing.JFrame {
     /**
      * Creates new form Loginpanel
      */
-      
+        public static int user_id;
 
     public Loginpanel() {
     initComponents();
@@ -27,7 +31,22 @@ public class Loginpanel extends javax.swing.JFrame {
     setResizable(false);
     setVisible(true);
     }
-  
+    Connection conn;
+    PreparedStatement pst;
+    Statement st;
+       ResultSet rs;
+
+    //*For Connection*//
+    public void connect(){
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/Bakerymanagementsystem", "root", "");
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Loginpanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            java.util.logging.Logger.getLogger(Loginpanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+            }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -89,7 +108,7 @@ public class Loginpanel extends javax.swing.JFrame {
         getContentPane().add(jLabel5);
         jLabel5.setBounds(340, 380, 64, 20);
 
-        login.setBackground(new java.awt.Color(153, 0, 0));
+        login.setBackground(new java.awt.Color(102, 255, 102));
         login.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         login.setForeground(new java.awt.Color(255, 255, 255));
         login.setText("Login");
@@ -128,7 +147,97 @@ public class Loginpanel extends javax.swing.JFrame {
     }//GEN-LAST:event_passActionPerformed
 
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
-        
+        // TODO add your handling code here:
+       String value = role.getSelectedItem().toString();
+        if(value=="Select Role"){
+            JOptionPane.showMessageDialog(null, "A deprecated call", "Warning",
+                JOptionPane.WARNING_MESSAGE);
+        }
+        else if(value=="Admin"){
+            try {
+                if(user.getText().isEmpty() || pass.getText().isEmpty())
+                {
+                    JOptionPane.showMessageDialog(this, "UserName or Password Blank");
+                }
+                else
+                {
+                    String username = user.getText();
+                    String password = pass.getText();
+
+                    Class.forName("com.mysql.jdbc.Driver");
+                    conn = DriverManager.getConnection("jdbc:mysql://localhost/Bakerymanagementsystem","root","");
+                    pst = conn.prepareStatement("select * from user where username = ? and password=? ");
+                    pst.setString(1,username);
+                    pst.setString(2,password);
+                    rs = pst.executeQuery();
+                    if(rs.next())
+                    {
+                        Dashboard m = new Dashboard();
+                        this.hide();
+                        m.setVisible(true);
+                    }
+
+                    else
+                    {
+                        JOptionPane.showMessageDialog(this, "UserName or Password do not Matched.......");
+                        user.setText("");
+                        pass.setText("");
+
+                        user.requestFocus();
+                    }
+                }
+
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Loginpanel.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(Loginpanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            //
+        }
+        //        ****-----STUDENT----****
+        else if(value=="Employee"){
+
+            try {
+                if(user.getText().isEmpty() || pass.getText().isEmpty())
+                {
+                    JOptionPane.showMessageDialog(this, "UserName or Password Blank");
+                }
+                else
+                {
+                    String username = user.getText();
+                    String password = pass.getText();
+
+                    Class.forName("com.mysql.jdbc.Driver");
+                    conn = DriverManager.getConnection("jdbc:mysql://localhost/Bakerymanagementsystem","root","");
+                    pst = conn.prepareStatement("select * from employee where username = ? and password=? ");
+                    pst.setString(1,username);
+                    pst.setString(2,password);
+                    rs = pst.executeQuery();
+                    if(rs.next())
+                    {
+                        this.user_id=rs.getInt(1);
+                        Employee m = new Employee();
+                        this.hide();
+                        m.setVisible(true);
+                    }
+
+                    else
+                    {
+                        JOptionPane.showMessageDialog(this, "UserName or Password do not Matched.......");
+                        user.setText("");
+                        pass.setText("");
+                        //                   role.setSelectedItem("");
+
+                        user.requestFocus();
+                    }
+                }
+
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Loginpanel.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(Loginpanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }//GEN-LAST:event_loginActionPerformed
 
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked

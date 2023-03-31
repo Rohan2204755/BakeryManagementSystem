@@ -4,6 +4,7 @@
  */
 package BakeryManagementSystem;
 
+import com.mysql.cj.jdbc.result.ResultSetMetaData;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -26,7 +27,25 @@ public class Employee extends javax.swing.JFrame {
         initComponents();
       setLocationRelativeTo(null);
         setResizable(false);
+        connect();
+        loadtable();
+        
     }
+
+    Connection conn;
+    PreparedStatement pst;
+    Statement st;
+    
+    public void connect(){
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/Bakerymanagementsystem", "root", "");
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Addemployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            java.util.logging.Logger.getLogger(Addemployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+            }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -254,21 +273,45 @@ public class Employee extends javax.swing.JFrame {
 
     private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
         // TODO add your handling code here:
-        
+        Inventory m = new Inventory();
+        this.hide();
+        m.setVisible(true);
     }//GEN-LAST:event_jLabel11MouseClicked
 
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
         // TODO add your handling code here:
-       
+        Loginpanel m = new Loginpanel();
+        this.hide();
+        m.setVisible(true);
     }//GEN-LAST:event_jLabel9MouseClicked
 
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
         // TODO add your handling code here:
-       
+        Dashboard m = new Dashboard();
+        this.hide();
+        m.setVisible(true);
     }//GEN-LAST:event_jLabel10MouseClicked
 
     private void deleteemployeeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteemployeeMouseClicked
-     
+        // TODO add your handling code here:
+        try {
+        int row=employee.getSelectedRow();
+         st = conn.createStatement();
+         String cell = employee.getModel().getValueAt(row, 0).toString();
+            System.out.println(cell);
+          String query1 = "delete from  employee where id="+cell;
+          
+          st.executeUpdate(query1);
+       } catch (SQLException excep) {
+          excep.printStackTrace();
+       } catch (Exception excep) {
+          excep.printStackTrace();
+       }
+    JOptionPane.showMessageDialog(this, "Click Ok to Delete");
+
+    this.setVisible(false);
+    Employee ins = new Employee();
+    ins.setVisible(true);
     }//GEN-LAST:event_deleteemployeeMouseClicked
 
     private void employeeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_employeeMouseClicked
@@ -277,11 +320,137 @@ public class Employee extends javax.swing.JFrame {
 
     private void editemployeeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editemployeeMouseClicked
         // TODO add your handling code here:
-          
+            // Get the selected row index of the JTable
+   int rowIndex = employee.getSelectedRow();
+   if(rowIndex == -1) {
+       // No row is selected, show an error message
+       JOptionPane.showMessageDialog(null, "Please select a row to edit", "Error", JOptionPane.ERROR_MESSAGE);
+       return;
+   }
+
+   // Get the values of the selected row from the JTable
+   String empID = employee.getValueAt(rowIndex, 0).toString();
+   String empName = employee.getValueAt(rowIndex, 1).toString();
+   String empCitizenNo = employee.getValueAt(rowIndex, 2).toString();
+   String empGender = employee.getValueAt(rowIndex, 3).toString();
+   String empAddress = employee.getValueAt(rowIndex, 4).toString();
+   String empPhone = employee.getValueAt(rowIndex, 5).toString();
+   String empMail = employee.getValueAt(rowIndex, 6).toString();
+   String empPosition = employee.getValueAt(rowIndex, 7).toString();
+   String empSalary = employee.getValueAt(rowIndex, 8).toString();
+
+   // Prompt the user to edit the information
+   String newEmpName = JOptionPane.showInputDialog(null, "Enter the new name for employee " + empID, empName);
+   if(newEmpName == null) {
+       // The user clicked the cancel button, do nothing
+       return;
+   }
+
+   String newEmpCitizenNo = JOptionPane.showInputDialog(null, "Enter the new citizen number for employee " + empID, empCitizenNo);
+   if(newEmpCitizenNo == null) {
+       // The user clicked the cancel button, do nothing
+       return;
+   }
+
+   String newEmpGender = JOptionPane.showInputDialog(null, "Enter the new gender for employee " + empID, empGender);
+   if(newEmpGender == null) {
+       // The user clicked the cancel button, do nothing
+       return;
+   }
+
+   String newEmpAddress = JOptionPane.showInputDialog(null, "Enter the new address for employee " + empID, empAddress);
+   if(newEmpAddress == null) {
+       // The user clicked the cancel button, do nothing
+       return;
+   }
+
+   String newEmpPhone = JOptionPane.showInputDialog(null, "Enter the new phone number for employee " + empID, empPhone);
+   if(newEmpPhone == null) {
+       // The user clicked the cancel button, do nothing
+       return;
+   }
+
+   String newEmpMail = JOptionPane.showInputDialog(null, "Enter the new email for employee " + empID, empMail);
+   if(newEmpMail == null) {
+       // The user clicked the cancel button, do nothing
+       return;
+   }
+
+   String newEmpPosition = JOptionPane.showInputDialog(null, "Enter the new position for employee " + empID, empPosition);
+   if(newEmpPosition == null) {
+       // The user clicked the cancel button, do nothing
+       return;
+   }
+
+   String newEmpSalary = JOptionPane.showInputDialog(null, "Enter the new salary for employee " + empID, empSalary);
+   if(newEmpSalary == null) {
+       // The user clicked the cancel button, do nothing
+       return;
+   }
+
+   // Update the values of the selected row in the JTable
+   employee.setValueAt(newEmpName, rowIndex, 1);
+   employee.setValueAt(newEmpCitizenNo, rowIndex, 2);
+   employee.setValueAt(newEmpGender, rowIndex, 3);
+   employee.setValueAt(newEmpAddress, rowIndex, 4);
+   employee.setValueAt(newEmpPhone, rowIndex, 5);
+   employee.setValueAt(newEmpMail, rowIndex, 6);
+   employee.setValueAt(newEmpPosition, rowIndex, 7);
+   employee.setValueAt(newEmpSalary, rowIndex, 8);
+
+   try {
+       // Update the values of the selected row in the database
+       PreparedStatement stmt = conn.prepareStatement("UPDATE employee SET name = ?, citizen_no = ?, gender = ?, address = ?, phone = ?, mail = ?, position = ?, salary = ? WHERE id = ?");
+       stmt.setString(1, newEmpName);
+       stmt.setString(2, newEmpCitizenNo);
+       stmt.setString(3, newEmpGender);
+       stmt.setString(4, newEmpAddress);
+       stmt.setString(5, newEmpPhone);
+       stmt.setString(6, newEmpMail);
+       stmt.setString(7, newEmpPosition);
+       stmt.setString(8, newEmpSalary);
+       stmt.setString(9, empID);
+       stmt.executeUpdate();
+       JOptionPane.showMessageDialog(null, "Employee " + empID + " has been updated successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+   } catch (SQLException e) {
+   JOptionPane.showMessageDialog(null, "Error updating employee " + empID + ": " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+   }
 
     }//GEN-LAST:event_editemployeeMouseClicked
+ public void loadtable(){
+          try {
+            String query1="SELECT id, name,citizen_no,gender,address,phone,mail,position,salary FROM employee ";
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(query1);
+            ResultSetMetaData rsmd =  (ResultSetMetaData) rs.getMetaData();
+            DefaultTableModel model =(DefaultTableModel) employee.getModel();
+            int cols= rsmd.getColumnCount();
+            String[]colName =new String[cols];
+            for(int i=0;i<cols;i++)
+                colName[i]=rsmd.getColumnName(i+1);
+            model.setColumnIdentifiers(colName);
+            String id, name,citizen_no,gender,address,phone,mail,position,salary;
+            while(rs.next()){
+                id=rs.getString(1);
+                name=rs.getString(2);
+                citizen_no=rs.getString(3);
+                gender=rs.getString(4);
+                address=rs.getString(5);
+                phone=rs.getString(6);
+                mail=rs.getString(7);
+                position=rs.getString(8);
+                salary=rs.getString(8);
 
+
+                String[] row ={id, name,citizen_no,gender,address,phone,mail,position,salary};
+                model.addRow(row);
+     }
+       
     
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Failed");
+        }
+    }
     public void Update(){
     
 
