@@ -3,9 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/xeetr/OneDrive/Documents/NetBeansProjects/BakeryManagementSystem/src/bakerymanagementsystem/loginpanel.java</file>
-            <file>file:/C:/Users/xeetr/OneDrive/Documents/NetBeansProjects/BakeryManagementSystem/src/bakerymanagementsystem/BakeryManagementSystem.java</file>
-            <file>file:/C:/Users/xeetr/OneDrive/Documents/NetBeansProjects/BakeryManagementSystem/src/bakerymanagementsystem/Createnewaccount.java</file>
+            <file>file:/C:/Users/xeetr/OneDrive/Documents/NetBeansProjects/BakeryManagementSystem/src/BakeryManagementSystem/Employee.java</file>
+            <file>file:/C:/Users/xeetr/OneDrive/Documents/NetBeansProjects/BakeryManagementSystem/src/BakeryManagementSystem/Loginpanel.java</file>
+            <file>file:/C:/Users/xeetr/OneDrive/Documents/NetBeansProjects/BakeryManagementSystem/src/BakeryManagementSystem/Dashboard.java</file>
+            <file>file:/C:/Users/xeetr/OneDrive/Documents/NetBeansProjects/BakeryManagementSystem/src/BakeryManagementSystem/Inventory.java</file>
+            <file>file:/C:/Users/xeetr/OneDrive/Documents/NetBeansProjects/BakeryManagementSystem/src/BakeryManagementSystem/Addemployee.java</file>
         </group>
     </open-files>
 </project-private>
