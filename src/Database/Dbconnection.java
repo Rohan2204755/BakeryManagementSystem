@@ -10,7 +10,7 @@ import java.sql.*;
 public class Dbconnection {
 //    Objects Of variables of class related to database
 
-
+//JDBC
     //    connection helps to establish the connection with database
     public Connection connection;
 
