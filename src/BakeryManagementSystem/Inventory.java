@@ -15,6 +15,8 @@ public class Inventory extends javax.swing.JFrame {
      */
     public Inventory() {
         initComponents();
+        setLocationRelativeTo(null);
+        setResizable(false);
     }
 
     /**
@@ -48,7 +50,7 @@ public class Inventory extends javax.swing.JFrame {
         employee = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(null);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(220, 219, 219));
         jPanel1.setLayout(null);
@@ -202,8 +204,7 @@ public class Inventory extends javax.swing.JFrame {
         jPanel1.add(jScrollPane1);
         jScrollPane1.setBounds(240, 230, 680, 370);
 
-        getContentPane().add(jPanel1);
-        jPanel1.setBounds(6, 6, 935, 620);
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, -4, 940, 620));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

@@ -89,6 +89,11 @@ public class Addemployee extends javax.swing.JFrame {
         jLabel1.setBounds(6, 6, 37, 0);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/back.png"))); // NOI18N
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
         jPanel1.add(jLabel2);
         jLabel2.setBounds(0, 0, 30, 30);
 
@@ -353,6 +358,13 @@ public class Addemployee extends javax.swing.JFrame {
    
 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        // TODO add your handling code here:
+        Employee m = new Employee();
+        this.hide();
+        m.setVisible(true);
+    }//GEN-LAST:event_jLabel2MouseClicked
 
     /**
      * @param args the command line arguments
