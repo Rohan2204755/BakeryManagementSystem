@@ -108,6 +108,11 @@ public class Dashboard extends javax.swing.JFrame {
         order.setForeground(new java.awt.Color(255, 255, 255));
         order.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Order.png"))); // NOI18N
         order.setText("  Order");
+        order.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                orderMouseClicked(evt);
+            }
+        });
         jPanel1.add(order);
         order.setBounds(40, 350, 150, 25);
 
@@ -115,6 +120,11 @@ public class Dashboard extends javax.swing.JFrame {
         menu.setForeground(new java.awt.Color(255, 255, 255));
         menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/menu.png"))); // NOI18N
         menu.setText("  Menu");
+        menu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuMouseClicked(evt);
+            }
+        });
         jPanel1.add(menu);
         menu.setBounds(40, 400, 150, 25);
 
@@ -122,6 +132,11 @@ public class Dashboard extends javax.swing.JFrame {
         report.setForeground(new java.awt.Color(255, 255, 255));
         report.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Report.png"))); // NOI18N
         report.setText("  Report");
+        report.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                reportMouseClicked(evt);
+            }
+        });
         jPanel1.add(report);
         report.setBounds(40, 450, 150, 25);
 
@@ -129,6 +144,11 @@ public class Dashboard extends javax.swing.JFrame {
         setting.setForeground(new java.awt.Color(255, 255, 255));
         setting.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/setting.png"))); // NOI18N
         setting.setText("  Setting");
+        setting.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                settingMouseClicked(evt);
+            }
+        });
         jPanel1.add(setting);
         setting.setBounds(40, 500, 150, 25);
 
@@ -233,7 +253,7 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void employeeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_employeeMouseClicked
         // TODO add your handling code here:
-        Dashboard m = new Dashboard();
+        Employee m = new Employee();
         this.hide();
         m.setVisible(true);
     }//GEN-LAST:event_employeeMouseClicked
@@ -244,6 +264,34 @@ public class Dashboard extends javax.swing.JFrame {
         this.hide();
         m.setVisible(true);
     }//GEN-LAST:event_jLabel10MouseClicked
+
+    private void orderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_orderMouseClicked
+        // TODO add your handling code here:
+//        Order m = new Order();
+//        this.hide();
+//        m.setVisible(true);
+    }//GEN-LAST:event_orderMouseClicked
+
+    private void menuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuMouseClicked
+        // TODO add your handling code here:
+        Menu m = new Menu();
+        this.hide();
+        m.setVisible(true);
+    }//GEN-LAST:event_menuMouseClicked
+
+    private void reportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reportMouseClicked
+        // TODO add your handling code here:
+        Report m = new Report();
+        this.hide();
+        m.setVisible(true);
+    }//GEN-LAST:event_reportMouseClicked
+
+    private void settingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_settingMouseClicked
+        // TODO add your handling code here:
+        Setting m = new Setting();
+        this.hide();
+        m.setVisible(true);
+    }//GEN-LAST:event_settingMouseClicked
 
     /**
      * @param args the command line arguments

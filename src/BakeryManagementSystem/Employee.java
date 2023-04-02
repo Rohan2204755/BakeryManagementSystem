@@ -76,6 +76,7 @@ public class Employee extends javax.swing.JFrame {
         setting = new javax.swing.JLabel();
         logout = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -85,13 +86,13 @@ public class Employee extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 26)); // NOI18N
         jLabel2.setText("Employee");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(250, 50, 190, 41);
+        jLabel2.setBounds(240, 190, 190, 41);
 
         jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/edit.png"))); // NOI18N
         jLabel17.setText("Edit Employee");
         jPanel1.add(jLabel17);
-        jLabel17.setBounds(510, 130, 160, 40);
+        jLabel17.setBounds(500, 80, 160, 40);
 
         editemployee.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Box.png"))); // NOI18N
         editemployee.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -100,13 +101,13 @@ public class Employee extends javax.swing.JFrame {
             }
         });
         jPanel1.add(editemployee);
-        editemployee.setBounds(470, 80, 230, 150);
+        editemployee.setBounds(460, 30, 230, 150);
 
         jLabel19.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/add.png"))); // NOI18N
         jLabel19.setText("Add Employee");
         jPanel1.add(jLabel19);
-        jLabel19.setBounds(270, 140, 170, 30);
+        jLabel19.setBounds(260, 90, 170, 30);
 
         Addemployee.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Box.png"))); // NOI18N
         Addemployee.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -115,13 +116,13 @@ public class Employee extends javax.swing.JFrame {
             }
         });
         jPanel1.add(Addemployee);
-        Addemployee.setBounds(240, 80, 230, 150);
+        Addemployee.setBounds(230, 30, 230, 150);
 
         jLabel21.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/delete.png"))); // NOI18N
         jLabel21.setText("Delete Employee");
         jPanel1.add(jLabel21);
-        jLabel21.setBounds(740, 140, 180, 30);
+        jLabel21.setBounds(730, 90, 180, 30);
 
         deleteemployee.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Box.png"))); // NOI18N
         deleteemployee.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -130,7 +131,7 @@ public class Employee extends javax.swing.JFrame {
             }
         });
         jPanel1.add(deleteemployee);
-        deleteemployee.setBounds(710, 80, 230, 150);
+        deleteemployee.setBounds(700, 30, 230, 150);
 
         employee.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -233,6 +234,11 @@ public class Employee extends javax.swing.JFrame {
         jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/side.png"))); // NOI18N
         jPanel1.add(jLabel15);
         jLabel15.setBounds(0, 0, 220, 620);
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 26)); // NOI18N
+        jLabel3.setText("Employee");
+        jPanel1.add(jLabel3);
+        jLabel3.setBounds(240, 0, 190, 41);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -506,6 +512,7 @@ public class Employee extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

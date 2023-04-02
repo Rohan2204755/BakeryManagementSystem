@@ -15,6 +15,8 @@ public class Setting extends javax.swing.JFrame {
      */
     public Setting() {
         initComponents();
+        setLocationRelativeTo(null);
+        setResizable(false);
     }
 
     /**
