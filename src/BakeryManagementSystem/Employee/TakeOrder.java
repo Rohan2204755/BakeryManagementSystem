@@ -495,6 +495,86 @@ public class TakeOrder extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
+          
+         if(b.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Please order first!!");
+        }
+        else if(jComboBox1.getSelectedItem().equals("Select Method")){
+            JOptionPane.showMessageDialog(null, "Please select the payment method");
+        }
+                else if(jComboBox1.getSelectedItem().equals("Cash")){
+            JOptionPane.showMessageDialog(null, "Please reveive the Cash!!");
+        }
+        else if (jComboBox1.getSelectedItem().equals("Online")){
+//               Scan and payment
+            try{
+                File file1 = new File("public\\online.png");
+//                String data = String.format(String.valueOf((char) cal()));
+                String data = String.format(totalAmo());
+
+                ByteArrayOutputStream out = QRCode.from(data).withSize(250, 250).to(ImageType.PNG).stream();
+                FileOutputStream fos = new FileOutputStream(file1);
+                out.writeTo(fos);
+                out.flush();
+                fos.close();
+
+            }
+            catch(Exception e){
+                System.out.println(e);
+
+            }
+            JFrame newframe=new JFrame();
+            newframe.setBounds(700,200,350,200);
+            newframe.setResizable(false);
+            newframe.setLayout(null);
+
+            JButton button = new JButton("Esewa");
+            button.setForeground(Color.WHITE);
+            button.setBackground(Color.blue);
+            button.setFocusable(false);
+            button.setCursor(new Cursor(Cursor. HAND_CURSOR));
+            button.setBounds(70, 50, 100, 25);
+            newframe.add(button);
+
+            JLabel label = new JLabel();
+            label.setBounds(40, 90, 500, 50);
+            label.setFont(label.getFont().deriveFont(17f));
+            label.setForeground(Color.red);
+            newframe.add(label);
+
+            JButton button1 = new JButton("Scan");
+            button1.setForeground(Color.WHITE);
+            button1.setBackground(Color.blue);
+            button1.setFocusable(false);
+            button1.setCursor(new Cursor(Cursor. HAND_CURSOR));
+            button1.setBounds(180, 50, 100, 25);
+            button1.setBorder(BorderFactory.createRaisedBevelBorder());
+            newframe.add(button1);
+
+            button1.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    newframe.dispose();
+                    label.setText("");
+                    JFrame scanner=new JFrame();
+                    scanner.setBounds(700,200,403,403);
+                    scanner.setResizable(false);
+                    scanner.setLayout(null);
+                    JLabel admin_pic_label = new JLabel(new ImageIcon("public\\online.png"));
+                    admin_pic_label.setBounds(0,0,400,400);
+                    scanner.add(admin_pic_label);
+                    scanner.setVisible(true);
+                            checkif=true;
+
+                }});
+            button.addActionListener((new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    label.setText("Esewa is currently not available");
+                    button.setEnabled(false);
+                }}));
+            newframe.setVisible(true);
+        }
        
     }//GEN-LAST:event_jButton6ActionPerformed
 
