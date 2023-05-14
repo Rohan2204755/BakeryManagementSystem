@@ -457,6 +457,11 @@ public class TakeOrder extends javax.swing.JFrame {
         else if( value=="Cookies"){
             loadtable("Cookies");
             showBill();
+            
+            else ( value=="Drinks"){
+            loadtable("Drinks");
+            showBill();
+                    }
 
         }        
     }//GEN-LAST:event_pcatActionPerformed
