@@ -76,6 +76,8 @@ public class Employee extends javax.swing.JFrame {
         logout = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        dashboard1 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -83,9 +85,10 @@ public class Employee extends javax.swing.JFrame {
         jPanel1.setLayout(null);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 26)); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/mitho-bakery-high-resolution-logo-white-on-transparent-background 1.png"))); // NOI18N
         jLabel2.setText("Employee");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(250, 50, 190, 41);
+        jLabel2.setBounds(10, 0, 190, 190);
 
         jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/edit.png"))); // NOI18N
@@ -229,7 +232,24 @@ public class Employee extends javax.swing.JFrame {
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/LogooBakery.png"))); // NOI18N
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(890, 0, 60, 64);
+        jLabel3.setBounds(890, 0, 60, 0);
+
+        dashboard1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        dashboard1.setForeground(new java.awt.Color(255, 255, 255));
+        dashboard1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Dashboard.png"))); // NOI18N
+        dashboard1.setText("  Dashboard");
+        dashboard1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                dashboard1MouseClicked(evt);
+            }
+        });
+        jPanel1.add(dashboard1);
+        dashboard1.setBounds(40, 200, 150, 21);
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 26)); // NOI18N
+        jLabel4.setText("Employee");
+        jPanel1.add(jLabel4);
+        jLabel4.setBounds(250, 50, 190, 41);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -414,6 +434,10 @@ public class Employee extends javax.swing.JFrame {
 
         m.setVisible(true);
     }//GEN-LAST:event_AddemployeeMouseClicked
+
+    private void dashboard1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboard1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dashboard1MouseClicked
  public void loadtable(){
           try {
             String query1="SELECT id, name,citizen_no,gender,address,phone,mail,position,salary FROM employee ";
@@ -492,6 +516,7 @@ public class Employee extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Addemployee;
     private javax.swing.JLabel dashboard;
+    private javax.swing.JLabel dashboard1;
     private javax.swing.JLabel deleteemployee;
     private javax.swing.JLabel editemployee;
     private javax.swing.JLabel eemployee;
@@ -503,6 +528,7 @@ public class Employee extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
