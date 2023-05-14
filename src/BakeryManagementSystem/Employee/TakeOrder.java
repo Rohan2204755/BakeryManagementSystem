@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package BakeryManagementSystem.Employee;
+package Employee;
 
 import BakeryManagementSystem.Addemployee;
 import BakeryManagementSystem.Dashboard;
@@ -60,7 +60,19 @@ public class TakeOrder extends javax.swing.JFrame {
         setResizable(false);
     }
 
-   
+       Connection conn;
+    PreparedStatement pst;
+    Statement st;
+    public void connect(){
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/Bakerymanagementsystem", "root", "");
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Addemployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            java.util.logging.Logger.getLogger(Addemployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+            }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -425,7 +437,18 @@ public class TakeOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void pcatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pcatActionPerformed
-        
+        String value = pcat.getSelectedItem().toString();
+        if(value=="Cake"){
+            loadtable("Cake");
+            showBill();
+
+            //
+        }
+        else if( value=="Cookies"){
+            loadtable("Cookies");
+            showBill();
+
+        }        
     }//GEN-LAST:event_pcatActionPerformed
 
     private void pcatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pcatMouseClicked
@@ -437,7 +460,12 @@ public class TakeOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_jSpinner1StateChanged
 
     private void catMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_catMouseClicked
-   
+        // TODO add your handling code here:
+        int selectedRow = cat.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel)cat.getModel();
+        name.setText(model.getValueAt(selectedRow, 0).toString());
+        price.setText(model.getValueAt(selectedRow, 1).toString());
+        jSpinner1.setValue(1);
 
     }//GEN-LAST:event_catMouseClicked
 
@@ -447,7 +475,13 @@ public class TakeOrder extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
-      
+        // TODO add your handling code here:
+        if(!checkif){
+                        JOptionPane.showMessageDialog(null, "Make payment first");
+        }
+        else{
+       saveOrder();
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void pprice4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pprice4ActionPerformed
@@ -495,7 +529,7 @@ public class TakeOrder extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-          
+        
          if(b.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Please order first!!");
         }
@@ -575,17 +609,236 @@ public class TakeOrder extends javax.swing.JFrame {
                 }}));
             newframe.setVisible(true);
         }
-       
+
     }//GEN-LAST:event_jButton6ActionPerformed
 
-  
+    public void loadtable(String product){
+          try {
+            String query1="SELECT item_name, unit_price FROM Inventory where category = ? ";
+                  PreparedStatement pstmt = conn.prepareStatement(query1);
+                  pstmt.setString(1, product);
+                  ResultSet rs = pstmt.executeQuery();
+        // Create a new data model with the selected items
+   ArrayList<String[]> items = new ArrayList<>();
+        while (rs.next()) {
+            String[] item = {rs.getString("item_name"), rs.getString("unit_price")};
+            items.add(item);
+        }
+        Object[][] data = new Object[items.size()][2];
+        for (int i = 0; i < items.size(); i++) {
+            data[i][0] = items.get(i)[0];
+            data[i][1] = items.get(i)[1];
+        }
+        String[] columnNames = {"item_name", "unit_price"};
+        DefaultTableModel model = new DefaultTableModel(data, columnNames);
+        cat.setModel(model);
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    }
+    }
+
+void priceCalculator(){
+    int quantity=(int)jSpinner1.getValue();
+    int pricefinal=Integer.parseInt(price.getText());
+    String total=String.valueOf(quantity * pricefinal );
+    pprice4.setText(total);
+//    showBill();
+
+}
+
+
+
+void clearButton(){
+    price.setText(String.valueOf(0));
+    jSpinner1.setValue(0);
+    pprice4.setText("");
+    name.setText("");
+    
+}
+
+void clearAll(){
+    clearButton();
+        b.setText("");
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+}
+
+public void addtables(String Name, int price, int Qty ,String Total){
+    DefaultTableModel dt = (DefaultTableModel) jTable1.getModel();
+    DecimalFormat df = new DecimalFormat("00.00") ;
+    double totPrice = price * Double.valueOf(Qty) ;
+    String TotalPrice = df.format(totPrice);
+
+    // Update Inventory table with reduced quantity
+    try {
+        String query1="SELECT quantity FROM Inventory where item_name = ?";
+        PreparedStatement pstmt = conn.prepareStatement(query1);
+        pstmt.setString(1, Name);
+        ResultSet rs = pstmt.executeQuery();
+        int currentQty = 0;
+        if (rs.next()) {
+            currentQty = rs.getInt("quantity");
+        }
+        int newQty = currentQty - Qty;
+        if (newQty < 0) {
+            JOptionPane.showMessageDialog(this, "Not enough stock for "+Name);
+            return;
+        }
+        String query2 = "UPDATE Inventory SET quantity=? WHERE item_name=?";
+        PreparedStatement pstmt2 = conn.prepareStatement(query2);
+        pstmt2.setInt(1, newQty);
+        pstmt2.setString(2, Name);
+        pstmt2.executeUpdate();
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    }
+
+    // Add order details to the table
+    Vector v = new Vector();
+    v.add(Name);
+    v.add(price);
+    v.add(Qty);
+    v.add(TotalPrice);
+    dt.addRow(v);
+}
+
+
+public String totalAmo(){
+            float sum=0;
+        for(int i=0;i<jTable1.getRowCount();i++){
+
+            sum=sum+ Float.parseFloat((jTable1.getValueAt(i,3).toString()));
+        }
+        return String.valueOf(sum);
+}
+
+     public float cal(){
+        //cal total table values
+        float sum=0;
+        for(int i=0;i<jTable1.getRowCount();i++){
+
+            sum=sum+ Float.parseFloat((jTable1.getValueAt(i,3).toString()));
+        }
+        return sum;
+
+    }
+     
+     
+//     to add the quantity if the product
+    public String AddQty(){
+         int sum=0;
+        for(int i=0;i<jTable1.getRowCount();i++){
+            sum=sum+ Integer.parseInt((jTable1.getValueAt(i,2).toString()));
+        }
+        return String.valueOf(sum);
+         
+     }
+    /// The following code saves the order data in orders table and saves the total orders
+    void saveOrder(){
+    try {
+        String cusName = fullname.getText();
+        String date = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
+        
+        // Check if any of the text fields are empty
+        if (cusName.isEmpty()) { // check if the customer name is null
+            JOptionPane.showMessageDialog(this, "Customer name is empty!!");
+        } 
+        else if (jTable1.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(this, "Please make some order first!!");
+        }
+        else {
+            // All text fields are filled in, proceed with adding the order to the database
+            pst = conn.prepareStatement("INSERT INTO orders (customerName, quantity, Date, Total) VALUES (?, ?, ?, ?)");
+            pst.setString(1, cusName);
+            pst.setString(2, AddQty());
+            pst.setString(3, date);
+            pst.setFloat(4, cal());
+
+            int k = pst.executeUpdate();
+            if (k == 1) {
+                JOptionPane.showMessageDialog(this, "Order added successfully");
+                PrintBill();
+
+                // Calculate and update the total orders for today in the OrderStatistics table
+                PreparedStatement ps = conn.prepareStatement("UPDATE OrderStatistics SET Total_orders = Total_orders + 1 WHERE Date = ?");
+                ps.setString(1, date);
+                int rowsUpdated = ps.executeUpdate();
+                
+                // If no rows were updated, it means there were no previous entries for today's date
+                // In that case, insert a new row for today's date in the OrderStatistics table
+                if (rowsUpdated == 0) {
+                    PreparedStatement psInsert = conn.prepareStatement("INSERT INTO OrderStatistics (Date, Total_orders) VALUES (?, ?)");
+                    psInsert.setString(1, date);
+                    psInsert.setInt(2, 1);
+                    psInsert.executeUpdate();
+                }
+            } 
+            else {
+                JOptionPane.showMessageDialog(this, "Failed to add product");
+            }
+        }
+    } catch (SQLException ex) {
+        java.util.logging.Logger.getLogger(Addemployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    }
+}
 
      
      
      
-   
+     void PrintBill(){
+                 if (jTable1.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Please Select the food first !!");
+        }else {try {
+            showBill();
+            boolean print = b.print();
+            if (!print) {
+                JOptionPane.showMessageDialog(null, "Unable To Print !!..");
+            }} catch (PrinterException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }} 
+     }
+
+
+void showBill(){
+//        if (jTable1.getRowCount() == 0) {
+//            JOptionPane.showMessageDialog(null, "Please make order first!!");
+//        } else {
+            try {
+
+                b.setText("                                               Mitho Bakery \n");
+                b.setText(b.getText() + "                                                    Naxal \n");
+                b.setText(b.getText() + "                                            Kathmandu,Nepal \n");
+                b.setText(b.getText() + "                                          +977 ########, \n");
+                b.setText(b.getText() + "-----------------------------------------------------------------------------------------------\n");
+                b.setText(b.getText() + "Customer name:              "+ fullname.getText()+"\n");
+                b.setText(b.getText() + "-----------------------------------------------------------------------------------------------\n");
+                b.setText(b.getText() + "  Item\t\tQty\tPrice \tTotal" +"\n");
+                b.setText(b.getText() + "-----------------------------------------------------------------------------------------------\n");
+
+                DefaultTableModel df = (DefaultTableModel) jTable1.getModel();
+                // get table Product details
+                for (int i = 0; i < jTable1.getRowCount(); i++) {
+
+                    String Name = df.getValueAt(i, 0).toString();
+                    String Qty = df.getValueAt(i, 2).toString();
+                    String Price = df.getValueAt(i, 1).toString();
+                    String Total = df.getValueAt(i, 3).toString();
+
+
+                    b.setText(b.getText() +"  "+ Name+"\t\t"+Qty +"\t"+Price + "\t"+Total +"\n");
+                }
+
+                b.setText(b.getText() + "----------------------------------------------------------------------------------------------\n");
+                b.setText(b.getText() + "Total :                                                                                     " + cal() +"\n");
+                b.setText(b.getText() + "----------------------------------------------------------------------------------------------\n");
+                b.setText(b.getText() + "                                    Thanks For Your Order...!"+"\n");
+                b.setText(b.getText() + "----------------------------------------------------------------------------------------------\n");
+                b.setText(b.getText() + "                                      Visit Again with Smile"+"\n");
+
+            } catch (Exception e) {
+            }
 //        }
-    
+    }
 
 
     /**
@@ -613,8 +866,6 @@ public class TakeOrder extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(TakeOrder.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 

@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package BakeryManagementSystem.Employee;
+package Employee;
 
 import BakeryManagementSystem.Addemployee;
 import BakeryManagementSystem.Loginpanel;
@@ -25,7 +25,28 @@ public class Employeedashboard extends javax.swing.JFrame {
     /**
      * Creates new form Dashboard
      */
-  
+    public Employeedashboard() {
+        initComponents();
+        connect();
+        displayTotalOrders();
+        showInventoryStatus();
+        showLowQuantityItems();
+        setLocationRelativeTo(null);
+        setResizable(false);
+    }
+    Connection conn;
+    PreparedStatement pst;
+    Statement st;
+    public void connect(){
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/Bakerymanagementsystem", "root", "");
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Addemployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            java.util.logging.Logger.getLogger(Addemployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+            }
 
 
     /**
@@ -247,7 +268,72 @@ public class Employeedashboard extends javax.swing.JFrame {
     private void totalOrdersTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalOrdersTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_totalOrdersTextFieldActionPerformed
+void displayTotalOrders() {
+    try {
+        // Create SQL query to retrieve total orders for today's date
+        String sql = "SELECT Total_orders FROM OrderStatistics WHERE Date = ?";
 
+        // Prepare the statement
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+
+        // Set the parameter to today's date
+        pstmt.setString(1, new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime()));
+
+        // Execute the query and get the result
+        ResultSet rs = pstmt.executeQuery();
+        if (rs.next()) {
+            int totalOrders = rs.getInt("Total_orders");
+
+            // Display the result in the text field
+            totalOrdersTextField.setText(String.valueOf(totalOrders));
+        } else {
+            // No result found
+            totalOrdersTextField.setText("0");
+        }
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+}
+
+public void showInventoryStatus() {
+    // Construct the SQL query to select the total quantity of items in each category
+    String sql = "SELECT item_name, quantity FROM Inventory";
+
+    // Execute the query and get the result
+    StringBuilder status = new StringBuilder();
+    try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
+        while (rs.next()) {
+            String itemName = rs.getString("item_name");
+            int quantity = rs.getInt("quantity");
+            status.append(itemName).append(": ").append(quantity).append("\n");
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+    // Display the result in a JLabel
+    inventoryStatus.setText(status.toString());
+}
+public void showLowQuantityItems() {
+    // Construct the SQL query to select the items whose quantity is less than 5
+    String sql = "SELECT item_name, quantity FROM Inventory WHERE quantity < 5";
+
+    // Execute the query and get the result
+    StringBuilder lowQuantityItems = new StringBuilder();
+    try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
+        while (rs.next()) {
+            String itemName = rs.getString("item_name");
+            int quantity = rs.getInt("quantity");
+            lowQuantityItems.append(itemName).append(": ").append(quantity).append("\n");
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+    // Display the result in a JLabel
+    lowitems.setText(lowQuantityItems.toString());
+}
 
     /**
      * @param args the command line arguments
@@ -274,8 +360,6 @@ public class Employeedashboard extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Employeedashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 

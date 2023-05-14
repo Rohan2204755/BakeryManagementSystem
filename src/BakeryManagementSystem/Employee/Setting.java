@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package BakeryManagementSystem.Employee;
+package Employee;
 
 import BakeryManagementSystem.Addemployee;
 import BakeryManagementSystem.Loginpanel;
@@ -31,7 +31,46 @@ public class Setting extends javax.swing.JFrame {
               setLocationRelativeTo(null);
                 setResizable(false);
     }
-       
+       Connection conn;
+    PreparedStatement pst;
+    Statement st;
+    public void connect(){
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/Bakerymanagementsystem", "root", "");
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Addemployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            java.util.logging.Logger.getLogger(Addemployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+            }
+    public void getinfo(){
+        
+
+    //*For Connection*//
+   
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/Bakerymanagementsystem", "root", "");
+             pst = conn.prepareStatement("select *from employee where id=? ");
+//            rs= st.executeQuery("select *from student where id=? ");
+            pst.setInt(1, log.user_id);
+           ResultSet rs = pst.executeQuery();
+
+            if(rs.next()){
+                sid.setText(rs.getString(1));
+                sposition.setText(rs.getString(8));
+                sname.setText(rs.getString(2));
+                slocation.setText(rs.getString(5));
+                semail.setText(rs.getString(7));
+                
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Setting.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            java.util.logging.Logger.getLogger(Setting.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -184,6 +223,36 @@ public class Setting extends javax.swing.JFrame {
 //        String newpassword = slocation.getText();
 //        String Security = semail.getText();
 
+        try {
+            String tname = sname.getText();
+            String tmobile = slocation.getText();
+            String taddress = semail.getText();
+            int id =Integer.parseInt(sid.getText());
+
+
+  
+   pst = conn.prepareStatement("UPDATE employee SET name=?, address=?, mail=? where id=? ");
+            pst.setString(1, tname);
+            pst.setString(2, tmobile);
+            pst.setString(3, taddress);
+            pst.setInt(4, id);
+            
+        
+
+            int k= pst.executeUpdate();
+            if(k==1){
+                JOptionPane.showMessageDialog(this, "Succesfully Updated");
+            
+                
+//                this.setVisible(false);
+//                Instructor ins=new Instructor();
+//                ins.setVisible(true);
+        }else{
+                 JOptionPane.showMessageDialog(this, "Failed to Update");
+            }
+ } catch (SQLException ex) {
+            java.util.logging.Logger.getLogger(Setting.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }         
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -228,7 +297,6 @@ public class Setting extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Setting.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */

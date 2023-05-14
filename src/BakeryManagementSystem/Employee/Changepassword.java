@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package BakeryManagementSystem.Employee;
+package Employee;
 
 import BakeryManagementSystem.ForgetPass;
 import BakeryManagementSystem.Loginpanel;
@@ -26,9 +26,25 @@ public class Changepassword extends javax.swing.JFrame {
      */
     public Changepassword() {
         initComponents();
-      
+        connect();
+        getinfo();
+        setLocationRelativeTo(null);
+        setResizable(false);
     }
-
+ Connection conn;
+    PreparedStatement pst;
+    Statement st;
+    
+    public void connect(){
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/Bakerymanagementsystem", "root", "");
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(ForgetPass.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            java.util.logging.Logger.getLogger(ForgetPass.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+            }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -175,12 +191,89 @@ set.setVisible(true);
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-     
+        String sidText = sid.getText();
+        int id = Integer.parseInt(sidText);
+        
+         String user = old.getText();
+        String newpassword = cnew.getText();
+
+        try {
+            String query1 = "SELECT password FROM employee WHERE password='" + user + "'";
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(query1);
+            if (rs.next()) {
+                st.executeUpdate("UPDATE employee SET password='" + newpassword + "' WHERE id='" + id + "'");
+                JOptionPane.showMessageDialog(null, "Password updated successfully.");
+                old.setText("");
+            cnew.setText("");
+//                 Loginpanel m = new Loginpanel();
+//                 this.hide();
+//                m.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "Please write correct username and answer.");
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error in connection.");
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
  public void getinfo(){
         
 
+    //*For Connection*//
    
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/Bakerymanagementsystem", "root", "");
+             pst = conn.prepareStatement("select * from employee where id=? ");
+//            rs= st.executeQuery("select *from student where id=? ");
+            pst.setInt(1, log.user_id);
+           ResultSet rs = pst.executeQuery();
+
+            if(rs.next()){
+                sid.setText(rs.getString(1));
+                
+                
+                
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Setting.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            java.util.logging.Logger.getLogger(Setting.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+     }
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Changepassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Changepassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Changepassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Changepassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Changepassword().setVisible(true);
+            }
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
