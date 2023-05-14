@@ -794,6 +794,8 @@ public String totalAmo(){
             if (!print) {
                 JOptionPane.showMessageDialog(null, "Unable To Print !!..");
             }} catch (PrinterException ex) {
+                                JOptionPane.showMessageDialog(this, "Failed to print bill ");
+
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }} 
      }
