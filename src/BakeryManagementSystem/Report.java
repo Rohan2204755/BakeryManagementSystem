@@ -125,6 +125,7 @@ public class Report extends javax.swing.JFrame {
             }
             result.close();
             statement.close();
+            cal.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
