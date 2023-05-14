@@ -34,7 +34,19 @@ public class Orders extends javax.swing.JFrame {
         setResizable(false);
     }
 
-   
+       Connection conn;
+    PreparedStatement pst;
+    Statement st;
+    public void connect(){
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/Bakerymanagementsystem", "root", "");
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Addemployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            java.util.logging.Logger.getLogger(Addemployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+            }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -295,9 +307,72 @@ public class Orders extends javax.swing.JFrame {
        rpt.setVisible(true);
     }//GEN-LAST:event_jLabel13MouseClicked
 public void loadTable(String date) {
+    try {
+        
+        String query = "SELECT order_id, customerName, quantity, Total FROM orders WHERE date = ?";
+        PreparedStatement pstmt = conn.prepareStatement(query);
+        pstmt.setString(1, date);
+        ResultSet rs = pstmt.executeQuery();
 
+        // Create a new data model with the selected orders
+        ArrayList<String[]> orders = new ArrayList<>();
+        while (rs.next()) {
+            String[] order = {rs.getString("order_id"), rs.getString("customerName"), rs.getString("quantity"), rs.getString("Total")};
+            orders.add(order);
+        }
+        Object[][] data = new Object[orders.size()][4];
+        for (int i = 0; i < orders.size(); i++) {
+            data[i][0] = orders.get(i)[0];
+            data[i][1] = orders.get(i)[1];
+            data[i][2] = orders.get(i)[2];
+            data[i][3] = orders.get(i)[3];
+        }
+        String[] columnNames = {"Order ID", "Customer Name", "quantity", "Total"};
+        DefaultTableModel model = new DefaultTableModel(data, columnNames);
+        ord.setModel(model);
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    }
 }
- 
+ public void loadtable(){
+          try {
+            String query1="SELECT order_id, customerName, quantity, Total FROM orders ";
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(query1);
+            ResultSetMetaData rsmd =  (ResultSetMetaData) rs.getMetaData();
+            DefaultTableModel model =(DefaultTableModel) ord.getModel();
+            int cols= rsmd.getColumnCount();
+            String[]colName =new String[cols];
+            for(int i=0;i<cols;i++)
+                colName[i]=rsmd.getColumnName(i+1);
+            model.setColumnIdentifiers(colName);
+            String order_id, customerName, quantity, Total;
+            while(rs.next()){
+                order_id=rs.getString(1);
+                customerName=rs.getString(2);
+                quantity=rs.getString(3);
+                Total=rs.getString(4);
+                String[] row ={order_id, customerName, quantity, Total};
+                model.addRow(row);
+     }
+            cal();
+       
+    
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Failed");
+        }
+    }
+    
+     public void cal(){
+        //cal total table values
+        float sum=0;
+        for(int i=0;i<ord.getRowCount();i++){
+
+            sum=sum+ Float.parseFloat((ord.getValueAt(i,3).toString()));
+        }
+    grandtotal.setText("Rs. " + String.valueOf(sum));        
+
+    }
      
    
     /**
@@ -325,8 +400,6 @@ public void loadTable(String date) {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Orders.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 

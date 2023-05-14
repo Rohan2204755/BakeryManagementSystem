@@ -63,7 +63,7 @@ public class Additem extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
         pname = new javax.swing.JTextField();
-        pcat = new javax.swing.JComboBox<String>();
+        pcat = new javax.swing.JComboBox<>();
         jLabel15 = new javax.swing.JLabel();
         quan = new javax.swing.JTextField();
 
@@ -246,7 +246,6 @@ public class Additem extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Additem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */

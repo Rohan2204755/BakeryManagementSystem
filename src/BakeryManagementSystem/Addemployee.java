@@ -37,7 +37,7 @@ public class Addemployee extends javax.swing.JFrame {
     public void connect(){
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/Bakerymanagementsystem", "root", "");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/bakerymanagementsystem", "root", "");
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(Addemployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -331,7 +331,7 @@ public class Addemployee extends javax.swing.JFrame {
 
         int k= pst.executeUpdate();
         if(k==1){
-            JOptionPane.showMessageDialog(this, "Instructor Added Succesfully");
+            JOptionPane.showMessageDialog(this, "Employee Added Succesfully");
             ename.setText("");
             ctz.setText("");
             eadd.setText("");

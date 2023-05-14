@@ -4,6 +4,16 @@
  */
 package BakeryManagementSystem;
 
+import com.mysql.cj.jdbc.result.ResultSetMetaData;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author xeetr
@@ -15,9 +25,25 @@ public class Inventory extends javax.swing.JFrame {
      */
     public Inventory() {
         initComponents();
+        connect();
+        loadtable();
         setLocationRelativeTo(null);
         setResizable(false);
     }
+
+       Connection conn;
+    PreparedStatement pst;
+    Statement st;
+    public void connect(){
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/Bakerymanagementsystem", "root", "");
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Addemployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            java.util.logging.Logger.getLogger(Addemployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+            }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -34,7 +60,6 @@ public class Inventory extends javax.swing.JFrame {
         eemployee = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -47,7 +72,8 @@ public class Inventory extends javax.swing.JFrame {
         jLabel21 = new javax.swing.JLabel();
         deleteemployee = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        employee = new javax.swing.JTable();
+        inventory = new javax.swing.JTable();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -55,9 +81,9 @@ public class Inventory extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(220, 219, 219));
         jPanel1.setLayout(null);
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/mitho-bakery-high-resolution-logo-white-on-transparent-background 1.png"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Logo.png"))); // NOI18N
         jPanel1.add(jLabel7);
-        jLabel7.setBounds(10, 20, 200, 140);
+        jLabel7.setBounds(50, 20, 130, 140);
 
         dashboard.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         dashboard.setForeground(new java.awt.Color(255, 255, 255));
@@ -73,7 +99,7 @@ public class Inventory extends javax.swing.JFrame {
 
         eemployee.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         eemployee.setForeground(new java.awt.Color(255, 255, 255));
-        eemployee.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/employe.png"))); // NOI18N
+        eemployee.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/emplo.png"))); // NOI18N
         eemployee.setText("   Employee");
         eemployee.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -81,7 +107,7 @@ public class Inventory extends javax.swing.JFrame {
             }
         });
         jPanel1.add(eemployee);
-        eemployee.setBounds(40, 250, 150, 22);
+        eemployee.setBounds(40, 250, 150, 23);
 
         jLabel11.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
@@ -102,26 +128,19 @@ public class Inventory extends javax.swing.JFrame {
         jPanel1.add(jLabel8);
         jLabel8.setBounds(40, 350, 150, 22);
 
-        jLabel12.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/menu.png"))); // NOI18N
-        jLabel12.setText("  Menu");
-        jPanel1.add(jLabel12);
-        jLabel12.setBounds(40, 400, 150, 22);
-
         jLabel13.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Report.png"))); // NOI18N
         jLabel13.setText("  Report");
         jPanel1.add(jLabel13);
-        jLabel13.setBounds(40, 450, 150, 22);
+        jLabel13.setBounds(40, 400, 150, 22);
 
         jLabel14.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/setting.png"))); // NOI18N
         jLabel14.setText("  Setting");
         jPanel1.add(jLabel14);
-        jLabel14.setBounds(40, 500, 150, 22);
+        jLabel14.setBounds(40, 450, 150, 22);
 
         jLabel9.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
@@ -133,7 +152,7 @@ public class Inventory extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jLabel9);
-        jLabel9.setBounds(40, 550, 150, 24);
+        jLabel9.setBounds(40, 500, 150, 24);
 
         jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/side.png"))); // NOI18N
         jPanel1.add(jLabel15);
@@ -166,6 +185,11 @@ public class Inventory extends javax.swing.JFrame {
         jLabel17.setBounds(530, 130, 120, 40);
 
         editemployee.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Box.png"))); // NOI18N
+        editemployee.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                editemployeeMouseClicked(evt);
+            }
+        });
         jPanel1.add(editemployee);
         editemployee.setBounds(470, 80, 230, 150);
 
@@ -173,7 +197,7 @@ public class Inventory extends javax.swing.JFrame {
         jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/delete.png"))); // NOI18N
         jLabel21.setText("Delete Items");
         jPanel1.add(jLabel21);
-        jLabel21.setBounds(740, 130, 130, 30);
+        jLabel21.setBounds(750, 140, 130, 30);
 
         deleteemployee.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Box.png"))); // NOI18N
         deleteemployee.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -184,25 +208,29 @@ public class Inventory extends javax.swing.JFrame {
         jPanel1.add(deleteemployee);
         deleteemployee.setBounds(700, 80, 230, 150);
 
-        employee.setBorder(new javax.swing.border.MatteBorder(null));
-        employee.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        employee.setModel(new javax.swing.table.DefaultTableModel(
+        inventory.setBorder(new javax.swing.border.MatteBorder(null));
+        inventory.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        inventory.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "Name", "Citizen No", "Gender", "Address", "Phone", "Mail", "Position", "Salary"
+                "ID", "Name", "Catagory", "Price"
             }
         ));
-        employee.addMouseListener(new java.awt.event.MouseAdapter() {
+        inventory.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                employeeMouseClicked(evt);
+                inventoryMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(employee);
+        jScrollPane1.setViewportView(inventory);
 
         jPanel1.add(jScrollPane1);
         jScrollPane1.setBounds(240, 230, 680, 370);
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/LogooBakery.png"))); // NOI18N
+        jPanel1.add(jLabel3);
+        jLabel3.setBounds(880, 0, 60, 64);
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, -4, 940, 620));
 
@@ -240,23 +268,135 @@ public class Inventory extends javax.swing.JFrame {
     private void AddemployeeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddemployeeMouseClicked
         String id = null;
         // TODO add your handling code here:
-        Addemployee m = new Addemployee(id);
+        Additem m = new Additem();
 
         m.setVisible(true);
     }//GEN-LAST:event_AddemployeeMouseClicked
 
     private void deleteemployeeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteemployeeMouseClicked
         // TODO add your handling code here:
+         // TODO add your handling code here:
+        try {
+        int row=inventory.getSelectedRow();
+         st = conn.createStatement();
+         String cell = inventory.getModel().getValueAt(row, 0).toString();
+            System.out.println(cell);
+          String query1 = "delete from  Inventory where id="+cell;
+          
+          st.executeUpdate(query1);
+       } catch (SQLException excep) {
+          excep.printStackTrace();
+       } catch (Exception excep) {
+          excep.printStackTrace();
+       }
+    JOptionPane.showMessageDialog(this, "Click Ok to Delete");
+
+    this.setVisible(false);
+    Inventory ins = new Inventory();
+    ins.setVisible(true);
       
     }//GEN-LAST:event_deleteemployeeMouseClicked
 
-    private void employeeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_employeeMouseClicked
+    private void inventoryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inventoryMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_employeeMouseClicked
+    }//GEN-LAST:event_inventoryMouseClicked
 
+    private void editemployeeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editemployeeMouseClicked
+        // TODO add your handling code here:
+        // Get the selected row index of the JTable
+    int rowIndex = inventory.getSelectedRow();
+    if (rowIndex == -1) {
+        // No row is selected, show an error message
+        JOptionPane.showMessageDialog(null, "Please select a row to edit", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    // Get the values of the selected row from the JTable
+    String itemId = inventory.getValueAt(rowIndex, 0).toString();
+    String itemName = inventory.getValueAt(rowIndex, 1).toString();
+    String itemquan = inventory.getValueAt(rowIndex, 2).toString();
+    String itemCategory = inventory.getValueAt(rowIndex, 3).toString();
+    String itemPrice = inventory.getValueAt(rowIndex, 4).toString();
+
+    // Prompt the user to edit the information
+    String newItemName = JOptionPane.showInputDialog(null, "Enter the new name for item " + itemId, itemName);
+    if (newItemName == null) {
+        // The user clicked the cancel button, do nothing
+        return;
+    }
+
+    String newItemCategory = JOptionPane.showInputDialog(null, "Enter the new category for item " + itemId, itemCategory);
+    if (newItemCategory == null) {
+        // The user clicked the cancel button, do nothing
+        return;
+    }
+    
+     String newitemquan = JOptionPane.showInputDialog(null, "Enter the new quantity for item " + itemId, itemquan);
+    if (newitemquan == null) {
+        // The user clicked the cancel button, do nothing
+        return;
+    }
+
+    String newItemPrice = JOptionPane.showInputDialog(null, "Enter the new price for product " + itemId, itemPrice);
+    if (newItemPrice == null) {
+        // The user clicked the cancel button, do nothing
+        return;
+    }
+
+    // Update the values of the selected row in the JTable
+    inventory.setValueAt(newItemName, rowIndex, 1);
+    inventory.setValueAt(newitemquan, rowIndex, 2);
+    inventory.setValueAt(newItemCategory, rowIndex, 3);
+    inventory.setValueAt(newItemPrice, rowIndex, 4);
+
+    try {
+        // Update the values of the selected row in the database
+        PreparedStatement stmt = conn.prepareStatement("UPDATE Inventory SET item_name = ?, quantity = ?, category = ?, unit_price = ? WHERE id = ?");
+        stmt.setString(1, newItemName);
+        stmt.setString(2, newitemquan);
+        stmt.setString(3, newItemCategory);
+        stmt.setString(4, newItemPrice);
+        stmt.setString(5, itemId);
+        stmt.executeUpdate();
+        JOptionPane.showMessageDialog(null, "Item " + itemId + " has been updated successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "Error updating item " + itemId + ": " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    }
+
+    }//GEN-LAST:event_editemployeeMouseClicked
+
+     public void loadtable(){
+          try {
+            String query1="SELECT id, item_name, quantity ,category, unit_price FROM Inventory ";
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(query1);
+            ResultSetMetaData rsmd =  (ResultSetMetaData) rs.getMetaData();
+            DefaultTableModel model =(DefaultTableModel) inventory.getModel();
+            int cols= rsmd.getColumnCount();
+            String[]colName =new String[cols];
+            for(int i=0;i<cols;i++)
+                colName[i]=rsmd.getColumnName(i+1);
+            model.setColumnIdentifiers(colName);
+            String id, name,quantity,catagory,price;
+            while(rs.next()){
+                id=rs.getString(1);
+                name=rs.getString(2);
+                quantity=rs.getString(3);
+                catagory=rs.getString(4);
+                price=rs.getString(5);
+                String[] row ={id, name, quantity, catagory,price};
+                model.addRow(row);
+     }
+       
+    
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Failed");
+        }
+    }
     /**
      * @param args the command line arguments
      */
+   
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -295,9 +435,8 @@ public class Inventory extends javax.swing.JFrame {
     private javax.swing.JLabel deleteemployee;
     private javax.swing.JLabel editemployee;
     private javax.swing.JLabel eemployee;
-    private javax.swing.JTable employee;
+    private javax.swing.JTable inventory;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
@@ -305,6 +444,7 @@ public class Inventory extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;

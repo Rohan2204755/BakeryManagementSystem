@@ -71,7 +71,6 @@ public class Employee extends javax.swing.JFrame {
         eemployee = new javax.swing.JLabel();
         inventory = new javax.swing.JLabel();
         order = new javax.swing.JLabel();
-        menu = new javax.swing.JLabel();
         report = new javax.swing.JLabel();
         setting = new javax.swing.JLabel();
         logout = new javax.swing.JLabel();
@@ -86,13 +85,13 @@ public class Employee extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 26)); // NOI18N
         jLabel2.setText("Employee");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(240, 190, 190, 41);
+        jLabel2.setBounds(250, 50, 190, 41);
 
         jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/edit.png"))); // NOI18N
         jLabel17.setText("Edit Employee");
         jPanel1.add(jLabel17);
-        jLabel17.setBounds(500, 80, 160, 40);
+        jLabel17.setBounds(510, 130, 160, 40);
 
         editemployee.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Box.png"))); // NOI18N
         editemployee.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -101,13 +100,13 @@ public class Employee extends javax.swing.JFrame {
             }
         });
         jPanel1.add(editemployee);
-        editemployee.setBounds(460, 30, 230, 150);
+        editemployee.setBounds(470, 80, 230, 150);
 
         jLabel19.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/add.png"))); // NOI18N
         jLabel19.setText("Add Employee");
         jPanel1.add(jLabel19);
-        jLabel19.setBounds(260, 90, 170, 30);
+        jLabel19.setBounds(270, 140, 170, 30);
 
         Addemployee.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Box.png"))); // NOI18N
         Addemployee.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -116,13 +115,13 @@ public class Employee extends javax.swing.JFrame {
             }
         });
         jPanel1.add(Addemployee);
-        Addemployee.setBounds(230, 30, 230, 150);
+        Addemployee.setBounds(240, 80, 230, 150);
 
         jLabel21.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/delete.png"))); // NOI18N
         jLabel21.setText("Delete Employee");
         jPanel1.add(jLabel21);
-        jLabel21.setBounds(730, 90, 180, 30);
+        jLabel21.setBounds(740, 140, 180, 30);
 
         deleteemployee.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Box.png"))); // NOI18N
         deleteemployee.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -131,7 +130,7 @@ public class Employee extends javax.swing.JFrame {
             }
         });
         jPanel1.add(deleteemployee);
-        deleteemployee.setBounds(700, 30, 230, 150);
+        deleteemployee.setBounds(710, 80, 230, 150);
 
         employee.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -151,9 +150,9 @@ public class Employee extends javax.swing.JFrame {
         jPanel1.add(jScrollPane1);
         jScrollPane1.setBounds(240, 240, 680, 370);
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/mitho-bakery-high-resolution-logo-white-on-transparent-background 1.png"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Logo.png"))); // NOI18N
         jPanel1.add(jLabel7);
-        jLabel7.setBounds(10, -20, 280, 190);
+        jLabel7.setBounds(40, 10, 130, 150);
 
         dashboard.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         dashboard.setForeground(new java.awt.Color(255, 255, 255));
@@ -169,7 +168,7 @@ public class Employee extends javax.swing.JFrame {
 
         eemployee.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         eemployee.setForeground(new java.awt.Color(255, 255, 255));
-        eemployee.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/employe.png"))); // NOI18N
+        eemployee.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/emplo.png"))); // NOI18N
         eemployee.setText("   Employee");
         eemployee.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -198,26 +197,19 @@ public class Employee extends javax.swing.JFrame {
         jPanel1.add(order);
         order.setBounds(40, 350, 150, 25);
 
-        menu.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        menu.setForeground(new java.awt.Color(255, 255, 255));
-        menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/menu.png"))); // NOI18N
-        menu.setText("  Menu");
-        jPanel1.add(menu);
-        menu.setBounds(40, 400, 150, 25);
-
         report.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         report.setForeground(new java.awt.Color(255, 255, 255));
         report.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Report.png"))); // NOI18N
         report.setText("  Report");
         jPanel1.add(report);
-        report.setBounds(40, 450, 150, 25);
+        report.setBounds(40, 400, 150, 25);
 
         setting.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         setting.setForeground(new java.awt.Color(255, 255, 255));
         setting.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/setting.png"))); // NOI18N
         setting.setText("  Setting");
         jPanel1.add(setting);
-        setting.setBounds(40, 500, 150, 25);
+        setting.setBounds(40, 450, 150, 25);
 
         logout.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         logout.setForeground(new java.awt.Color(255, 255, 255));
@@ -229,16 +221,15 @@ public class Employee extends javax.swing.JFrame {
             }
         });
         jPanel1.add(logout);
-        logout.setBounds(40, 550, 150, 25);
+        logout.setBounds(40, 500, 150, 25);
 
         jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/side.png"))); // NOI18N
         jPanel1.add(jLabel15);
         jLabel15.setBounds(0, 0, 220, 620);
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 26)); // NOI18N
-        jLabel3.setText("Employee");
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/LogooBakery.png"))); // NOI18N
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(240, 0, 190, 41);
+        jLabel3.setBounds(890, 0, 60, 64);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -262,19 +253,9 @@ public class Employee extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void AddemployeeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddemployeeMouseClicked
-        String id = null;
-        // TODO add your handling code here:
-        Addemployee m = new Addemployee(id);
-
-        m.setVisible(true);
-    }//GEN-LAST:event_AddemployeeMouseClicked
-
     private void eemployeeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eemployeeMouseClicked
         // TODO add your handling code here:
-        Dashboard m = new Dashboard();
-        this.hide();
-        m.setVisible(true);
+
     }//GEN-LAST:event_eemployeeMouseClicked
 
     private void inventoryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inventoryMouseClicked
@@ -286,6 +267,7 @@ public class Employee extends javax.swing.JFrame {
 
     private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
         // TODO add your handling code here:
+
         Loginpanel m = new Loginpanel();
         this.hide();
         m.setVisible(true);
@@ -424,6 +406,14 @@ public class Employee extends javax.swing.JFrame {
    }
 
     }//GEN-LAST:event_editemployeeMouseClicked
+
+    private void AddemployeeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddemployeeMouseClicked
+        String id = null;
+        // TODO add your handling code here:
+        Addemployee m = new Addemployee(id);
+
+        m.setVisible(true);
+    }//GEN-LAST:event_AddemployeeMouseClicked
  public void loadtable(){
           try {
             String query1="SELECT id, name,citizen_no,gender,address,phone,mail,position,salary FROM employee ";
@@ -446,7 +436,7 @@ public class Employee extends javax.swing.JFrame {
                 phone=rs.getString(6);
                 mail=rs.getString(7);
                 position=rs.getString(8);
-                salary=rs.getString(8);
+                salary=rs.getString(9);
 
 
                 String[] row ={id, name,citizen_no,gender,address,phone,mail,position,salary};
@@ -517,7 +507,6 @@ public class Employee extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel logout;
-    private javax.swing.JLabel menu;
     private javax.swing.JLabel order;
     private javax.swing.JLabel report;
     private javax.swing.JLabel setting;

@@ -4,28 +4,53 @@
  */
 package BakeryManagementSystem;
 
+import Employee.Setting;
+import Employee.TakeOrder;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import javax.swing.JOptionPane;
+
 
 /**
  *
  * @author xeetr
  */
 public class Dashboard extends javax.swing.JFrame {
-    Loginpanel log=new Loginpanel();
+//    Loginpanel log=new Loginpanel();
 
     /**
      * Creates new form Dashboard
      */
     public Dashboard() {
         initComponents();
-       setLocationRelativeTo(null);
-                setResizable(false);
+            connect();
+        showdata();
+        todaystotal();
+        showInventoryStatus();
+        showLowQuantityItems();
+        setLocationRelativeTo(null);
+        setResizable(false);
     }
+
+       Connection conn;
+    PreparedStatement pst;
+    Statement st;
+    public void connect(){
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/Bakerymanagementsystem", "root", "");
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Addemployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            java.util.logging.Logger.getLogger(Addemployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+            }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -65,9 +90,12 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(220, 219, 219));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Logo.png"))); // NOI18N
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, 130, 150));
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -83,6 +111,7 @@ public class Dashboard extends javax.swing.JFrame {
 
         employee.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         employee.setForeground(new java.awt.Color(255, 255, 255));
+        employee.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/emplo.png"))); // NOI18N
         employee.setText(" Employee");
         employee.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -163,6 +192,8 @@ public class Dashboard extends javax.swing.JFrame {
         todaysale.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         todaysale.setBorder(null);
         jPanel1.add(todaysale, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 300, 130, 50));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Totalsale.png"))); // NOI18N
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 230, -1, 140));
 
         jLabel17.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -180,6 +211,8 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
         jPanel1.add(totall, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 120, 130, 50));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/aaa.png"))); // NOI18N
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 50, -1, 140));
 
         lowitems.setEditable(false);
@@ -219,73 +252,14 @@ public class Dashboard extends javax.swing.JFrame {
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/BOX2.png"))); // NOI18N
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 30, 260, 360));
+
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Logo.png"))); // NOI18N
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, 130, 140));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1015, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1015, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 620, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 1015, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
-        // TODO add your handling code here:
-        Dashboard m = new Dashboard();
-        this.hide();
-        m.setVisible(true);
-    }//GEN-LAST:event_jLabel10MouseClicked
-
-    private void employeeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_employeeMouseClicked
-        // TODO add your handling code here:
-        Employee m = new Employee();
-        this.setVisible(false);
-        m.setVisible(true);
-    }//GEN-LAST:event_employeeMouseClicked
-
-    private void inventoryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inventoryMouseClicked
-        // TODO add your handling code here:
-        Inventory m = new Inventory();
-        this.hide();
-        m.setVisible(true);
-    }//GEN-LAST:event_inventoryMouseClicked
-
-    private void orderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_orderMouseClicked
-        // TODO add your handling code here:
-        Orders m = new Orders();
-        this.setVisible(false);
-        m.setVisible(true);
-    }//GEN-LAST:event_orderMouseClicked
-
-    private void reportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reportMouseClicked
-        // TODO add your handling code here:
-        Report m = new Report();
-        this.hide();
-        m.setVisible(true);
-    }//GEN-LAST:event_reportMouseClicked
-
-    private void settingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_settingMouseClicked
-        // TODO add your handling code here:
-        Settings m = new Settings();
-        this.hide();
-        m.setVisible(true);
-    }//GEN-LAST:event_settingMouseClicked
 
     private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
         // TODO add your handling code here:
@@ -294,9 +268,149 @@ public class Dashboard extends javax.swing.JFrame {
         m.setVisible(true);
     }//GEN-LAST:event_logoutMouseClicked
 
+    private void settingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_settingMouseClicked
+        // TODO add your handling code here:
+        Settings m = new Settings();
+        this.hide();
+        m.setVisible(true);
+    }//GEN-LAST:event_settingMouseClicked
+
+    private void reportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reportMouseClicked
+        // TODO add your handling code here:
+        Report m = new Report();
+        this.hide();
+        m.setVisible(true);
+    }//GEN-LAST:event_reportMouseClicked
+
+    private void orderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_orderMouseClicked
+        // TODO add your handling code here:
+                Orders m = new Orders();
+                this.setVisible(false);
+                m.setVisible(true);
+    }//GEN-LAST:event_orderMouseClicked
+
+    private void inventoryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inventoryMouseClicked
+        // TODO add your handling code here:
+        Inventory m = new Inventory();
+        this.hide();
+        m.setVisible(true);
+    }//GEN-LAST:event_inventoryMouseClicked
+
+    private void employeeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_employeeMouseClicked
+        // TODO add your handling code here:
+        Employee m = new Employee();
+            this.setVisible(false);
+        m.setVisible(true);
+    }//GEN-LAST:event_employeeMouseClicked
+
+    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
+        // TODO add your handling code here:
+        Dashboard m = new Dashboard();
+        this.hide();
+        m.setVisible(true);
+    }//GEN-LAST:event_jLabel10MouseClicked
+
     private void totallActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totallActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_totallActionPerformed
+
+
+
+    public  void showdata (){
+        try {
+            
+
+            // Execute SQL query
+            Statement stmt = conn.createStatement();
+            String sql = "SELECT SUM(Total) FROM orders";
+            ResultSet rs = stmt.executeQuery(sql);
+
+            // Get the sum value from result set
+            float sum = 0;
+            if (rs.next()) {
+                sum = rs.getFloat(1);
+            }
+
+            // Display the sum value in JLabel
+            totall.setText("Rs. " + String.valueOf(sum));
+
+            // Close the database connection
+           
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+}
+    public void todaystotal(){
+        // Get today's date in the format yyyy-MM-dd
+        String today = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
+
+    // Construct the SQL query to select the sum of the Total column for today's date
+    String sql1 = "SELECT SUM(Total) FROM orders WHERE Date = '" + today + "'";
+//    System.out.println(sql1);
+
+    // Execute the query and get the result
+    float sum = 0;
+    
+    try (Statement stm = conn.createStatement(); ResultSet rs = stm.executeQuery(sql1)) {
+        if (rs.next()) {
+            sum = rs.getFloat(1);
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+    // Display the result in a JLabel
+    todaysale.setText("Rs. " + String.valueOf(sum));
+
+    }
+
+    public void showInventoryStatus() {
+    // Construct the SQL query to select the total quantity of items in each category
+    String sql = "SELECT item_name, quantity FROM Inventory where quantity > 5";
+
+    // Execute the query and get the result
+    StringBuilder status = new StringBuilder();
+    try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
+        while (rs.next()) {
+            String itemName = rs.getString("item_name");
+            int quantity = rs.getInt("quantity");
+            status.append(itemName).append(": ").append(quantity).append("\n");
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+    // Display the result in a JLabel
+    inventoryStatus.setText(status.toString());
+    }
+     public void showLowQuantityItems() {
+    // Construct the SQL query to select the items whose quantity is less than 5
+    String sql = "SELECT item_name, quantity FROM Inventory WHERE quantity < 5";
+
+    // Execute the query and get the result
+    StringBuilder lowQuantityItems = new StringBuilder();
+    try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
+        while (rs.next()) {
+            String itemName = rs.getString("item_name");
+            int quantity = rs.getInt("quantity");
+            lowQuantityItems.append(itemName).append(": ").append(quantity).append("\n");
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+    // Display the result in a JLabel
+    lowitems.setText(lowQuantityItems.toString());
+    }
+ 
+
+
+
+
+  
+
+
 
     /**
      * @param args the command line arguments
