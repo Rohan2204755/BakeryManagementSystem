@@ -43,30 +43,32 @@ public class Dashboard extends javax.swing.JFrame {
         employee = new javax.swing.JLabel();
         inventory = new javax.swing.JLabel();
         order = new javax.swing.JLabel();
-        menu = new javax.swing.JLabel();
         report = new javax.swing.JLabel();
         setting = new javax.swing.JLabel();
         logout = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        todaysale = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
+        totall = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        lowitems = new javax.swing.JTextArea();
+        jLabel6 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        inventoryStatus = new javax.swing.JTextArea();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(220, 219, 219));
-        jPanel1.setLayout(null);
-
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/mitho-bakery-high-resolution-logo-white-on-transparent-background 1.png"))); // NOI18N
-        jPanel1.add(jLabel7);
-        jLabel7.setBounds(10, -20, 280, 190);
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, 130, 150));
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
@@ -77,20 +79,17 @@ public class Dashboard extends javax.swing.JFrame {
                 jLabel10MouseClicked(evt);
             }
         });
-        jPanel1.add(jLabel10);
-        jLabel10.setBounds(40, 200, 150, 21);
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 150, 21));
 
         employee.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         employee.setForeground(new java.awt.Color(255, 255, 255));
-        employee.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/employe.png"))); // NOI18N
-        employee.setText("   Employee");
+        employee.setText(" Employee");
         employee.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 employeeMouseClicked(evt);
             }
         });
-        jPanel1.add(employee);
-        employee.setBounds(40, 250, 150, 25);
+        jPanel1.add(employee, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 150, -1));
 
         inventory.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         inventory.setForeground(new java.awt.Color(255, 255, 255));
@@ -101,8 +100,7 @@ public class Dashboard extends javax.swing.JFrame {
                 inventoryMouseClicked(evt);
             }
         });
-        jPanel1.add(inventory);
-        inventory.setBounds(40, 300, 150, 25);
+        jPanel1.add(inventory, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, 150, -1));
 
         order.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         order.setForeground(new java.awt.Color(255, 255, 255));
@@ -113,20 +111,7 @@ public class Dashboard extends javax.swing.JFrame {
                 orderMouseClicked(evt);
             }
         });
-        jPanel1.add(order);
-        order.setBounds(40, 350, 150, 25);
-
-        menu.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        menu.setForeground(new java.awt.Color(255, 255, 255));
-        menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/menu.png"))); // NOI18N
-        menu.setText("  Menu");
-        menu.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                menuMouseClicked(evt);
-            }
-        });
-        jPanel1.add(menu);
-        menu.setBounds(40, 400, 150, 25);
+        jPanel1.add(order, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, 150, -1));
 
         report.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         report.setForeground(new java.awt.Color(255, 255, 255));
@@ -137,8 +122,7 @@ public class Dashboard extends javax.swing.JFrame {
                 reportMouseClicked(evt);
             }
         });
-        jPanel1.add(report);
-        report.setBounds(40, 450, 150, 25);
+        jPanel1.add(report, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 400, 150, -1));
 
         setting.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         setting.setForeground(new java.awt.Color(255, 255, 255));
@@ -149,8 +133,7 @@ public class Dashboard extends javax.swing.JFrame {
                 settingMouseClicked(evt);
             }
         });
-        jPanel1.add(setting);
-        setting.setBounds(40, 500, 150, 25);
+        jPanel1.add(setting, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 450, 150, -1));
 
         logout.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         logout.setForeground(new java.awt.Color(255, 255, 255));
@@ -161,67 +144,92 @@ public class Dashboard extends javax.swing.JFrame {
                 logoutMouseClicked(evt);
             }
         });
-        jPanel1.add(logout);
-        logout.setBounds(40, 550, 150, 25);
+        jPanel1.add(logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 500, 150, -1));
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel4.setText("Low Inventory Items");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 40, 180, 40));
 
         jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/side.png"))); // NOI18N
-        jPanel1.add(jLabel15);
-        jLabel15.setBounds(0, 0, 220, 620);
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 620));
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 26)); // NOI18N
-        jLabel4.setText("Dashboard");
-        jPanel1.add(jLabel4);
-        jLabel4.setBounds(250, 50, 150, 41);
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel5.setText("Todays Sales");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 260, 120, -1));
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel5.setText("Pending Orders");
-        jPanel1.add(jLabel5);
-        jLabel5.setBounds(520, 110, 140, 25);
+        todaysale.setEditable(false);
+        todaysale.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        todaysale.setBorder(null);
+        jPanel1.add(todaysale, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 300, 130, 50));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 230, -1, 140));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Box.png"))); // NOI18N
-        jPanel1.add(jLabel3);
-        jLabel3.setBounds(470, 90, 227, 140);
+        jLabel17.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel17.setText("Total Sales");
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, 130, -1));
 
-        jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel16.setText("Delivered");
-        jPanel1.add(jLabel16);
-        jLabel16.setBounds(770, 110, 110, 25);
+        totall.setEditable(false);
+        totall.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        totall.setBorder(null);
+        totall.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        totall.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                totallActionPerformed(evt);
+            }
+        });
+        jPanel1.add(totall, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 120, 130, 50));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 50, -1, 140));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Box.png"))); // NOI18N
-        jPanel1.add(jLabel1);
-        jLabel1.setBounds(700, 90, 227, 140);
+        lowitems.setEditable(false);
+        lowitems.setBackground(new java.awt.Color(255, 255, 255));
+        lowitems.setColumns(1);
+        lowitems.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        lowitems.setForeground(new java.awt.Color(255, 51, 51));
+        lowitems.setRows(10);
+        lowitems.setBorder(null);
+        lowitems.setCaretColor(new java.awt.Color(255, 255, 255));
+        jScrollPane1.setViewportView(lowitems);
 
-        jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel17.setText("Total Orders");
-        jPanel1.add(jLabel17);
-        jLabel17.setBounds(290, 110, 110, 25);
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 70, 180, 270));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Box.png"))); // NOI18N
-        jPanel1.add(jLabel2);
-        jLabel2.setBounds(240, 90, 227, 140);
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 26)); // NOI18N
+        jLabel6.setText("Dashboard");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 10, 150, 41));
 
-        jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/BOX2.png"))); // NOI18N
-        jPanel1.add(jLabel18);
-        jLabel18.setBounds(690, 250, 240, 370);
+        inventoryStatus.setEditable(false);
+        inventoryStatus.setBackground(new java.awt.Color(255, 255, 255));
+        inventoryStatus.setColumns(1);
+        inventoryStatus.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        inventoryStatus.setLineWrap(true);
+        inventoryStatus.setRows(10);
+        inventoryStatus.setBorder(null);
+        jScrollPane2.setViewportView(inventoryStatus);
 
-        jLabel20.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel20.setText("Notification");
-        jPanel1.add(jLabel20);
-        jLabel20.setBounds(260, 270, 90, 20);
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 70, 180, 270));
 
-        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/BOX3.png"))); // NOI18N
-        jPanel1.add(jLabel19);
-        jLabel19.setBounds(240, 260, 420, 350);
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/BOX2.png"))); // NOI18N
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 30, -1, 360));
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel11.setText("Inventory Items");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 40, 220, 41));
+
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/BOX2.png"))); // NOI18N
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 30, 260, 360));
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, 130, 140));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 956, Short.MAX_VALUE)
+            .addGap(0, 1015, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 950, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1015, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
@@ -230,33 +238,12 @@ public class Dashboard extends javax.swing.JFrame {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
-        // TODO add your handling code here:
-        Loginpanel m = new Loginpanel();
-        this.hide();
-        m.setVisible(true);
-    }//GEN-LAST:event_logoutMouseClicked
-
-    private void inventoryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inventoryMouseClicked
-        // TODO add your handling code here:
-        Inventory m = new Inventory();
-        this.hide();
-        m.setVisible(true);
-    }//GEN-LAST:event_inventoryMouseClicked
-
-    private void employeeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_employeeMouseClicked
-        // TODO add your handling code here:
-        Employee m = new Employee();
-        this.hide();
-        m.setVisible(true);
-    }//GEN-LAST:event_employeeMouseClicked
 
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
         // TODO add your handling code here:
@@ -265,19 +252,26 @@ public class Dashboard extends javax.swing.JFrame {
         m.setVisible(true);
     }//GEN-LAST:event_jLabel10MouseClicked
 
-    private void orderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_orderMouseClicked
+    private void employeeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_employeeMouseClicked
         // TODO add your handling code here:
-//        Order m = new Order();
-//        this.hide();
-//        m.setVisible(true);
-    }//GEN-LAST:event_orderMouseClicked
+        Employee m = new Employee();
+        this.setVisible(false);
+        m.setVisible(true);
+    }//GEN-LAST:event_employeeMouseClicked
 
-    private void menuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuMouseClicked
+    private void inventoryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inventoryMouseClicked
         // TODO add your handling code here:
-        Menu m = new Menu();
+        Inventory m = new Inventory();
         this.hide();
         m.setVisible(true);
-    }//GEN-LAST:event_menuMouseClicked
+    }//GEN-LAST:event_inventoryMouseClicked
+
+    private void orderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_orderMouseClicked
+        // TODO add your handling code here:
+        Orders m = new Orders();
+        this.setVisible(false);
+        m.setVisible(true);
+    }//GEN-LAST:event_orderMouseClicked
 
     private void reportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reportMouseClicked
         // TODO add your handling code here:
@@ -288,10 +282,21 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void settingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_settingMouseClicked
         // TODO add your handling code here:
-        Setting m = new Setting();
+        Settings m = new Settings();
         this.hide();
         m.setVisible(true);
     }//GEN-LAST:event_settingMouseClicked
+
+    private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
+        // TODO add your handling code here:
+        Loginpanel m = new Loginpanel();
+        this.hide();
+        m.setVisible(true);
+    }//GEN-LAST:event_logoutMouseClicked
+
+    private void totallActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totallActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_totallActionPerformed
 
     /**
      * @param args the command line arguments
@@ -332,25 +337,30 @@ public class Dashboard extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel employee;
     private javax.swing.JLabel inventory;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JTextArea inventoryStatus;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JProgressBar jProgressBar1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel logout;
-    private javax.swing.JLabel menu;
+    private javax.swing.JTextArea lowitems;
     private javax.swing.JLabel order;
     private javax.swing.JLabel report;
     private javax.swing.JLabel setting;
+    private javax.swing.JTextField todaysale;
+    private javax.swing.JTextField totall;
     // End of variables declaration//GEN-END:variables
 }
