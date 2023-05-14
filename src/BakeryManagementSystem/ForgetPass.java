@@ -66,6 +66,7 @@ public class ForgetPass extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        username1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -79,7 +80,7 @@ public class ForgetPass extends javax.swing.JFrame {
                 usernameActionPerformed(evt);
             }
         });
-        getContentPane().add(username, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 150, 220, 30));
+        getContentPane().add(username, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 50, 0, 30));
 
         search.setBackground(new java.awt.Color(153, 51, 0));
         search.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -90,7 +91,7 @@ public class ForgetPass extends javax.swing.JFrame {
                 searchActionPerformed(evt);
             }
         });
-        getContentPane().add(search, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 190, 90, 30));
+        getContentPane().add(search, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 190, 90, 30));
 
         Username.setFont(new java.awt.Font("Rockwell", 1, 14)); // NOI18N
         Username.setText("Security Question");
@@ -150,6 +151,13 @@ public class ForgetPass extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/reset.png"))); // NOI18N
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, -1));
+
+        username1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                username1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(username1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 150, 220, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -225,6 +233,10 @@ public class ForgetPass extends javax.swing.JFrame {
                 m.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void username1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_username1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_username1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -273,5 +285,6 @@ public class ForgetPass extends javax.swing.JFrame {
     private javax.swing.JButton search;
     private javax.swing.JTextField secques;
     private javax.swing.JTextField username;
+    private javax.swing.JTextField username1;
     // End of variables declaration//GEN-END:variables
 }
