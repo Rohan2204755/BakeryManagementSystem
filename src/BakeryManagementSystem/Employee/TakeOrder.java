@@ -98,7 +98,7 @@ public class TakeOrder extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         pname2 = new javax.swing.JTextField();
-        pcat1 = new javax.swing.JComboBox<>();
+        pcat1 = new javax.swing.JComboBox<String>();
         jLabel18 = new javax.swing.JLabel();
         pname3 = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
@@ -114,7 +114,7 @@ public class TakeOrder extends javax.swing.JFrame {
         cat = new javax.swing.JTable();
         SpinnerNumberModel model = new SpinnerNumberModel(1, 1, Integer.MAX_VALUE, 1);
         jSpinner1 = new javax.swing.JSpinner(model);
-        pcat = new javax.swing.JComboBox<>();
+        pcat = new javax.swing.JComboBox<String>();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         b = new javax.swing.JTextArea();
@@ -123,8 +123,9 @@ public class TakeOrder extends javax.swing.JFrame {
         jLabel20 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
         jLabel19 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox1 = new javax.swing.JComboBox<String>();
         jButton6 = new javax.swing.JButton();
+        name1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -156,7 +157,7 @@ public class TakeOrder extends javax.swing.JFrame {
                 nameActionPerformed(evt);
             }
         });
-        jPanel1.add(name, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 60, 220, 30));
+        jPanel1.add(name, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 560, 220, 30));
 
         jLabel5.setFont(new java.awt.Font("Rockwell", 1, 14)); // NOI18N
         jLabel5.setText("Quantity");
@@ -354,7 +355,7 @@ public class TakeOrder extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 170, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 170, -1, -1));
 
         jButton4.setBackground(new java.awt.Color(255, 51, 51));
         jButton4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -399,6 +400,15 @@ public class TakeOrder extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 470, 80, 30));
+
+        name1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        name1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        name1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                name1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(name1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 60, 220, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -611,6 +621,10 @@ public class TakeOrder extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void name1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_name1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_name1ActionPerformed
 
     public void loadtable(String product){
           try {
@@ -913,6 +927,7 @@ void showBill(){
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField name;
+    private javax.swing.JTextField name1;
     private javax.swing.JComboBox<String> pcat;
     private javax.swing.JComboBox<String> pcat1;
     private javax.swing.JTextField pname2;
