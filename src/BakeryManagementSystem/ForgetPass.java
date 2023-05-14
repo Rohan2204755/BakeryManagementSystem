@@ -67,6 +67,7 @@ public class ForgetPass extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         username1 = new javax.swing.JTextField();
+        username2 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -157,7 +158,14 @@ public class ForgetPass extends javax.swing.JFrame {
                 username1ActionPerformed(evt);
             }
         });
-        getContentPane().add(username1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 150, 220, 30));
+        getContentPane().add(username1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 220, 30));
+
+        username2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                username2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(username2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 150, 220, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -237,6 +245,10 @@ public class ForgetPass extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_username1ActionPerformed
 
+    private void username2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_username2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_username2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -286,5 +298,6 @@ public class ForgetPass extends javax.swing.JFrame {
     private javax.swing.JTextField secques;
     private javax.swing.JTextField username;
     private javax.swing.JTextField username1;
+    private javax.swing.JTextField username2;
     // End of variables declaration//GEN-END:variables
 }
